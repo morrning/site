@@ -25,3 +25,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    EntityMGR:
+        class: App\Service\EntityMGR
+        arguments: [ "@doctrine.orm.entity_manager"]
+    Jdate:
+        class: App\Service\Jdate

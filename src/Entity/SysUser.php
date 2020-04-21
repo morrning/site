@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SysUserRepository")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class SysUser implements UserInterface
 {
@@ -32,6 +36,26 @@ class SysUser implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $fullName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $profilePic;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\NewsContent", mappedBy="submitter", orphanRemoval=true)
+     */
+    private $newsContents;
+
+    public function __construct()
+    {
+        $this->newsContents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -109,5 +133,60 @@ class SysUser implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->fullName;
+    }
+
+    public function setFullName(string $fullName): self
+    {
+        $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    public function getProfilePic(): ?string
+    {
+        return $this->profilePic;
+    }
+
+    public function setProfilePic(?string $profilePic): self
+    {
+        $this->profilePic = $profilePic;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|NewsContent[]
+     */
+    public function getNewsContents(): Collection
+    {
+        return $this->newsContents;
+    }
+
+    public function addNewsContent(NewsContent $newsContent): self
+    {
+        if (!$this->newsContents->contains($newsContent)) {
+            $this->newsContents[] = $newsContent;
+            $newsContent->setSubmitter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNewsContent(NewsContent $newsContent): self
+    {
+        if ($this->newsContents->contains($newsContent)) {
+            $this->newsContents->removeElement($newsContent);
+            // set the owning side to null (unless already changed)
+            if ($newsContent->getSubmitter() === $this) {
+                $newsContent->setSubmitter(null);
+            }
+        }
+
+        return $this;
     }
 }

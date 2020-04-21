@@ -1,0 +1,81 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{% trans %}admin.news.new{% endtrans %}{% endblock %}
+{% block  pageBody %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{ form_start(form) }}
+                {{ form_label(form.title) }}
+                {{ form_widget(form.title) }}
+                {{ form_label(form.des) }}
+                {{ form_widget(form.des) }}
+                {{ form_label(form.body) }}
+                {{ form_widget(form.body) }}
+                <p>
+                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fa fa-cogs"></i>
+                        تنظیمات این یاداشت
+                    </a>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">{{ form_label(form.kywords) }}</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">{{ form_label(form.cat) }}</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">{{ form_label(form.pictureBanner) }}</a>
+                                <a class="nav-item nav-link" id="nav-url-tab" data-toggle="tab" href="#nav-url" role="tab" aria-controls="nav-url" aria-selected="false">{{ form_label(form.url) }}</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col p-3">
+                                            {{ form_widget(form.kywords) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col p-3">
+                                            {{ form_widget(form.cat) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col p-3">
+                                            {{ form_widget(form.pictureBanner) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-url" role="tabpanel" aria-labelledby="nav-url-tab">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col p-3">
+                                            {{ form_widget(form.url) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            {{ form_widget(form.submit) }}
+            <a class="btn btn-secondary ml-1" href="{{ path('404') }}">انصراف</a>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
