@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ورود به سایت{% endblock %}
+
+{% block body %}
+    <!-- heading section start -->
+    <section class="utf_section_padding container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-md-offset-3">
+                <form method="post">
+                    {% if error %}
+                        <div class="alert alert-warning">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                            شما با نام کاربری  {{ app.user.username }} وارد شده‌اید., <a href="{{ path('app_logout') }}">خروج از حساب کاربری</a>
+                        </div>
+                    {% endif %}
+
+                    <h1 class="h3 mb-3 font-weight-normal">ورود به سایت</h1>
+                    <label for="inputEmail h3">پست الکترونیکی</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                    <label for="inputPassword">کلمه عبور</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+
+                    {#
+                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                        See https://symfony.com/doc/current/security/remember_me.html
+
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" name="_remember_me"> Remember me
+                            </label>
+                        </div>
+                    #}
+
+                    <button class="btn btn-lg btn-primary" type="submit">
+                        ورود
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
