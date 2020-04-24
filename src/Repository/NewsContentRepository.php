@@ -22,19 +22,17 @@ class NewsContentRepository extends ServiceEntityRepository
     // /**
     //  * @return NewsContent[] Returns an array of NewsContent objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findtop($count)
     {
         return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('n.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('n.viewCount', 'ASC')
+            ->setMaxResults($count)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?NewsContent

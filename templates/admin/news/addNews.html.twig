@@ -4,7 +4,7 @@
 {% block  pageBody %}
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col-12">
                 {{ form_start(form) }}
                 {{ form_label(form.title) }}
                 {{ form_widget(form.title) }}
@@ -69,13 +69,13 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-12">
+                {{ form_widget(form.submit) }}
+                <a class="btn btn-secondary ml-1" href="{{ path('404') }}">انصراف</a>
+            </div>
         </div>
 
-        <div class="row">
-            {{ form_widget(form.submit) }}
-            <a class="btn btn-secondary ml-1" href="{{ path('404') }}">انصراف</a>
-        </div>
+
         {{ form_end(form) }}
     </div>
 {% endblock %}

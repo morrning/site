@@ -20,7 +20,7 @@ class AdminNewsType extends AbstractType
         $builder
             ->add('title',TextType::class)
             ->add('body', CKEditorType::class)
-            ->add('des',TextType::class)
+            ->add('des',TextareaType::class)
             ->add('pictureBanner', TextType::class,['required'=>false])
             ->add('kywords',TextType::class,['required'=>false])
             ->add('url',TextType::class)

@@ -13,6 +13,7 @@ class HomeController extends AbstractController
     public function homePage()
     {
         return $this->render('home/index.html.twig', [
+            'blogLasts'=> $this->getDoctrine()->getRepository('App:NewsContent')->findtop(5)
         ]);
     }
     /**

@@ -451,7 +451,7 @@
                     <ul>
                         <li class="navigation-divider">بخش یاداشت و خبر</li>
                         <li><a class="" href="{{ path('adminNewsAdd') }}">یاداشت جدید</a></li>
-                        <li><a class="" href="dashboard-two.html">مدیریت یاداشت‌ها<span class="badge badge-danger">{{ EntityMGR.findAll('App:NewsContent') | length }}</span></a></li>
+                        <li><a class="" href="{{ path('adminNewsArchive') }}">مدیریت یاداشت‌ها<span class="badge badge-danger">{{ EntityMGR.findAll('App:NewsContent') | length }}</span></a></li>
                         <li><a class="" href="dashboard-two.html">دیدگاه‌ها<span class="badge badge-danger">2</span></a></li>
                     </ul>
                 </div>

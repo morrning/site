@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -66,6 +68,21 @@ class NewsContent
      * @ORM\Column(type="string", length=255)
      */
     private $url;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $viewCount;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\NewsComment", mappedBy="post", orphanRemoval=true)
+     */
+    private $newsComments;
+
+    public function __construct()
+    {
+        $this->newsComments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -188,6 +205,49 @@ class NewsContent
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getViewCount(): ?string
+    {
+        return $this->viewCount;
+    }
+
+    public function setViewCount(string $viewCount): self
+    {
+        $this->viewCount = $viewCount;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|NewsComment[]
+     */
+    public function getNewsComments(): Collection
+    {
+        return $this->newsComments;
+    }
+
+    public function addNewsComment(NewsComment $newsComment): self
+    {
+        if (!$this->newsComments->contains($newsComment)) {
+            $this->newsComments[] = $newsComment;
+            $newsComment->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNewsComment(NewsComment $newsComment): self
+    {
+        if ($this->newsComments->contains($newsComment)) {
+            $this->newsComments->removeElement($newsComment);
+            // set the owning side to null (unless already changed)
+            if ($newsComment->getPost() === $this) {
+                $newsComment->setPost(null);
+            }
+        }
 
         return $this;
     }

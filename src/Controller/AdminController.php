@@ -31,6 +31,7 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $news->setDateSubmit(time());
             $news->setCanComment(true);
+            $news->setViewCount(0);
             $news->setSubmitter($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($news);
@@ -38,6 +39,15 @@ class AdminController extends AbstractController
         }
         return $this->render('admin/news/addNews.html.twig', [
             'form'=>$form->createView()
+        ]);
+    }
+    /**
+     * @Route("/admin/news/archive/{msg}", name="adminNewsArchive")
+     */
+    public function adminNewsArchive($msg = 0)
+    {
+        return $this->render('admin/dashboard.html.twig', [
+            'controller_name' => 'AdminController',
         ]);
     }
 }

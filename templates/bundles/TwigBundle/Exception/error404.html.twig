@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}صفحه مورد نظر یافت نشد{% endblock %}
+{% block body %}
+    <!--page title end-->
+    <section class="error-wrapper banner-404-bg parallax-bg overlay light-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="error-info">
+                        <h1 class="mb-30">404</h1>
+                        <span class="error-sub">متاسفانه صفحه مورد نظر پیدا نشد</span>
+                        <p><br>
+                            برای صفحه مورد نظر شما مشکلی پیش آمده یا پاک شده است.</p>
+                        <a class="btn vfx_waves_effect waves-light" href="{{ path('home') }}">بازگشت به صفحه اول</a> </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

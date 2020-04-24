@@ -4,69 +4,205 @@
 
 {% block body %}
 
-    <!-- Hero Section -->
-    <section class="banner-1 parallax-bg bg-fixed overlay light-6 fullscreen-banner valign-wrapper" data-stellar-background-ratio="0.5">
-        <div class="valign-cell text-center">
-            <div class="container padding-top-40">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="rev-heading intro-title intro-bold dark-text mb-10 text-uppercase">توسعه فناوری سرکش</h1>
-                        <p class="lead text-regular dark-text mb-30">متخصص توسعه زیرساخت‌های نرم‌افزاری و سخت افزاری</p>
-                        <div class="tp-caption tp-resizeme rev-btn"> <a href="#" class="btn blue vfx_waves_effect waves-light">مشاهده خدمات ما</a> </div>
+    <!--hero section start-->
+    <section class="hero-equal-height pt-165 pb-100 gradient-overly-right-color" style="background: url('{{ asset('images/public/homeBanner.png') }}')no-repeat center center / cover">
+        <div class="container">
+            <div class="row">
+                <div class="owl-carousel owl-theme hero-content-slider custom-dot custom-dot-2">
+                    <div class="item rtl">
+                        <div class="col-md-12 col-lg-12 col-12">
+                            <div class="hero-content-wrap text-white">
+                                <span class="text-uppercase">
+                                    کسب و کار خـود را به یک سطـح بـالـاتـــر بـــبريد ...
+                                </span>
+                                <h1 class="text-white"> شبکه و مخابرات</h1>
+                                <p class="lead">
+                                    بخش شبکه ما با داشتن سال‌ها تجربه و گروهی متخصص به ارائه متنوع‌ترین خدمات ارتباطی مبتنی بر شبکه‌های کامپیوتری و مخابراتی می‌پردازد.
+                                </p>
+                                <ul class="list-unstyled tech-feature-list text-white">
+                                    <li class="py-1"><span class="ti-control-backward mr-2"></span><strong>نصب و راه‌اندازی شبکه های مبتنی بر رادیو و وایرلس</strong></li>
+                                    <li class="py-1"><span class="ti-control-backward mr-2"></span><strong>نصب و راه‌اندازی شبکه های مبتنی بر Ethernet و Fiber</strong></li>
+                                    <li class="py-1"><span class="ti-control-backward mr-2"></span><strong>نصب و راه‌اندازی دستگاه‌های سانترال و VOIP</strong></li>
+                                    <li class="py-1"><span class="ti-control-backward mr-2"></span><strong>نصب و راه‌اندازی دوربین‌های تحت شبکه و آنالوگ</strong></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item rtl">
+                        <div class="col-md-12 col-lg-12 col-12">
+                            <div class="hero-content-wrap text-white">
+                                <span class="text-uppercase">
+                                    کسب و کار خـود را به یک سطـح بـالـاتـــر بـــبريد ...
+                                </span>
+                                <h1 class="text-white"> برنامه‌نویسی و نرم‌افزار</h1>
+                                <p class="lead">
+                                    بخش نرم‌افزار با استفاده از توان فنی مــتــخصــصــان مــجــــرب و بــه کــــارگـــیـــری آخـــــرین تکنولوژی‌های روز دنیای نرم‌ افزار، فعالیت‌هایی همچون طراحی سایت،‌ سئو (بهینه‌سازی سایت)، برنامه‌نویسی، نرم افزار سفارشی، ساخت اپلیکیشن‌های موبایل و... را طراحی، اجرا و پشتیبانی می‌کند.
+                                </p>
+                                <ul class="list-unstyled tech-feature-list text-white">
+                                    <li class="py-1"><span class="ti-control-backward mr-2"></span><strong>نصب و راه‌اندازی سرویس‌های مجازی‌سازی</strong></li>
+                                    <li class="py-1"><span class="ti-control-backward mr-2"></span><strong>نصب و راه‌اندازی پروژه‌های با محوریت ویندوز سرور</strong></li>
+                                    <li class="py-1"><span class="ti-control-backward mr-2"></span><strong> نصب و راه‌اندازی ‌‌توزیع‌‌های لینوکس و استقرار در سازمان</strong></li>
+                                    <li class="py-1"><span class="ti-control-backward mr-2"></span><strong>توسعه نرم‌افزارهای سفارشی متناسب با سازمان شما</strong></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item rtl">
+                        <div class="col-md-12 col-lg-12 col-12">
+                            <div class="hero-content-wrap text-white">
+                                <span class="text-uppercase">
+                                    کسب و کار خـود را به یک سطـح بـالـاتـــر بـــبريد ...
+                                </span>
+                                <h1 class="text-white"> طراحی سخت‌افزار</h1>
+                                <p class="lead">
+                                    تیم توسعه سخت افزار با در نظر گرفتن نیازهای شما توانایی طراحی و مونتاژ انواع سخت افزار را دارا می‌باشد.
+                                </p>
+                                <ul class="list-unstyled tech-feature-list text-white">
+                                    <li class="py-1"><span class="ti-control-backward mr-2"></span><strong>طراحی برد‌های مبتنی بر تراشه‌های ARM,FPGA,AVR</strong></li>
+                                    <li class="py-1"><span class="ti-control-backward mr-2"></span><strong>پرینت انواع برد‌های مدار چاپی تک لایه و چندلایه</strong></li>
+                                    <li class="py-1"><span class="ti-control-backward mr-2"></span><strong>مونتاژ انواع بردهای DIP و SMD</strong></li>
+                                    <li class="py-1"><span class="ti-control-backward mr-2"></span><strong>طراحی و اجرا امواع سیستم‌های هوشمند</strong></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Features Section -->
-    <section class="utf_feature_area">
-        <div class="row fix_m">
-            <div class="col-xs-12 col-sm-6 col-md-3 fix_p">
-                <div class="utf_single_feature text-center blue_col_one"> <i class="fab fa-linux"></i>
-                    <h4>توسعه نرم‌افزار</h4>
-                    <div class="utf_single_cap">
-                        <p>تیم توسعه نرم افزاری شرکت آماده انجام خدمات طراحی و اجرای انواع پروژه‌های وب را دارد</p>
-                        <a class="th_bt btn vfx_waves_effect" href="#">اطلاعات بیشتر</a> </div>
+    <!--hero section end-->
+    <!--client section start-->
+    <div class="client-section ptb-100">
+        <div class="container">
+            <!--clients logo start-->
+            <h3 class="text-center justify-content-center">مشتریان ما بهترین معرف ما هستند</h3>
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme clients-carousel dot-indicator">
+                        <div class="item single-client">
+                            <img src="{{ asset('front/img/clients-logo-01.png') }}" alt="آرم مشتری" class="client-img">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{{ asset('front/img/clients-logo-02.png') }}" alt="آرم مشتری" class="client-img">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{{ asset('front/img/clients-logo-03.png') }}" alt="آرم مشتری" class="client-img">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{{ asset('front/img/clients-logo-04.png') }}" alt="آرم مشتری" class="client-img">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{{ asset('front/img/clients-logo-05.png') }}" alt="آرم مشتری" class="client-img">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{{ asset('front/img/clients-logo-06.png') }}" alt="آرم مشتری" class="client-img">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{{ asset('front/img/clients-logo-07.png') }}" alt="آرم مشتری" class="client-img">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{{ asset('front/img/clients-logo-08.png') }}" alt="آرم مشتری" class="client-img">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 fix_p">
-                <div class="utf_single_feature text-center blue_col_two"> <i class="fas fa-microchip"></i>
-                    <h4>توسعه سخت‌افزار</h4>
-                    <div class="utf_single_cap">
-                        <p>طراحی و مونتاژ انواع بورد‌های الکترونیکی و برنامه‌نویسی سخت‌افزار تخصص ماست</p>
-                        <a class="th_bt btn vfx_waves_effect" href="#">اطلاعات بیشتر</a> </div>
+            <!--clients logo end-->
+        </div>
+    </div>
+    <!--client section start-->
+    <!--about us section start-->
+    <section class="about-us-section gray-light-bg">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-md-12 col-lg-6">
+                    <div class="img-wrap">
+                        <img src="{{ asset('front/img/about-us-2.jpg') }}" alt="در باره" class="img-fluid rounded shadow">
+                    </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 fix_p">
-                <div class="utf_single_feature text-center blue_col_three"> <i class="fas fa-wifi"></i>
-                    <h4>شبکه و مخابرات</h4>
-                    <div class="utf_single_cap">
-                        <p>تیم توسعه شبکه آماده انجام کلیه خدمات پسیو و اکتیو شبکه را دارد.</p>
-                        <a class="th_bt btn vfx_waves_effect" href="#">اطلاعات بیشتر</a> </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 fix_p">
-                <div class="utf_single_feature text-center blue_col_four"> <i class="fas fa-toolbox"></i>
-                    <h4>تعمیر و نگهداری</h4>
-                    <div class="utf_single_cap">
-                        <p>تعمیر و نگهداری انواع سیستم‌های سخت افزاری و نرم‌افزاری تخصص ماست</p>
-                        <a class="th_bt btn vfx_waves_effect" href="#">اطلاعات بیشتر</a> </div>
+                <div class="col-md-12 col-lg-5">
+                    <div class="about-content-right mb-md-4 mb-lg-0">
+                        <h2>درباره ما</h2>
+                        <p class="text-justify">
+                            توسعه فناوری سرکش مجموعه‌ایست متشکل از متخصصین و نیروهای خلاق که مبنای فعالیت خود را بر توسعه فناوری و به‌کارگیری آن در جهت بهبود کیفیت زندگی و کار قرار داده‌است. امروزه شرکت‌های کوچک و متوسط، که در دنیا آن‌ها را با نام SMEها می‌شناسند، برای باقی ماندن در بازار رقابتی باید از منابع خود به‌طور بهینه استفاده کنند. توسعه فناوری سرکش به این شرکت‌ها کمک می‌کند تا از طریق ارائه راهکارها و مشاوره‌های تخصصی در حوزه فناوری اطلاعات، ارتباطات و تبلیغات، هزینه‌های جاری خود را کاهش داده و از منابعی که در اختیار دارند به بهترین شکل استفاده کنند.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="utf_section_padding">
+    <!--about us section end-->
+    <!--download section start-->
+    <section class="call-to-action ptb-100 gradient-overlay" style="background: url('{{ asset('images/dardid.png') }}')no-repeat top center / cover fixed">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-9 col-lg-8">
+                    <div class="app-business-content text-center text-white">
+                        <h1 class="text-white">سرویس تبلیغات آنلاین دردید</h1>
+                        <p class="lead">
+                            ما در طول چهار سال متوالی، در حال آماده سازی محیطی ساده، منعطف، یکپارچه و در راستای نیاز مردم ایران و با ریشه‌های بومی برای ایجاد یک سرویس انتشار آگهی و نیازمندی بودی‌ایم.
+                        </p>
+                        <div class="action-btns mt-5">
+                            <ul class="list-inline app-download-list">
+                                <li class="list-inline-item">
+                                    <a href="https://www.dardid.com" class="d-flex align-items-center border rounded">
+                                        <span class="fab fa-windows icon-sm mr-3"></span>
+                                        <div class="download-text text-left">
+                                            <span>مشاهده </span>
+                                            <h5 class="mb-0">نمای وب</h5>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://play.google.com/store/apps/details?id=ir.dardid" target="_blank" class="d-flex align-items-center border rounded">
+                                        <span class="fab fa-google-play icon-sm mr-3"></span>
+                                        <div class="download-text text-left">
+                                            <span>دریافت اپلیکیشن از </span>
+                                            <h5 class="mb-0">گوگل پلی</h5>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--download section end-->
+    <!--blog section start-->
+    <section class="our-blog-section pt-5 gray-light-bg">
         <div class="container">
             <div class="row">
-                <div class="col-md-5 device_img"> <img src="{{ asset('site/assets/img/mockup/device.png') }}" class="img-responsive" alt="Image"> </div>
-                <div class="col-md-7">
-                    <h2 class="font-30 mb-30 were_title title-text-shadow">سلام ما یک تیم طراح خلاق هستیم</h2>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان <br>
-                        <br>
-                        هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان, </p>
+                <div class="col-md-8">
+                    <div class="section-heading mb-5">
+                        <h2>آخرین مطالب از پایگاه دانش</h2>
+                    </div>
                 </div>
+            </div>
+            <div class="row">
+                {% for blogLast in blogLasts %}
+                    <div class="col-md-4">
+                        <div class="single-blog-card card border-0 shadow-sm">
+                            <span class="category position-absolute badge badge-pill badge-primary">{{blogLast.cat.catName}}</span>
+                            <img src="{{ asset('publicFiles/' ~ blogLast.pictureBanner) }}" class="card-img-top position-relative" alt="وبلاگ">
+                            <div class="card-body">
+                                <h3 class="h5 mb-2 card-title"><a href="#">{{blogLast.title}}</a></h3>
+                                <div class="post-meta mb-2">
+                                    <ul class="list-inline meta-list">
+                                        <li class="list-inline-item">{{Jdate.jdate('J F Y',blogLast.dateSubmit)}}</li>
+                                    </ul>
+                                </div>
+                                <p class="card-text">{{blogLast.des}}</p>
+                                <a href="{{ path('blogShowPost',{'url':blogLast.url}) }}" class="detail-link">بیشتر بخوانید <span class="ti-arrow-left"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
             </div>
         </div>
     </section>
+    <!--blog section end-->
 {% endblock %}
