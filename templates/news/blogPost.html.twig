@@ -3,105 +3,77 @@
 {% block title %}{{content.title}}{% endblock %}
 
 {% block body %}
-    <!-- blog section start -->
-    <div class="utf_blog_section utf_section_padding">
+    <!--blog section start-->
+    <div class="module ptb-100">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="utf_posts_content utf_single_post">
-                        <article class="utf_post_wrapper">
-                            <div class="utf_entry_header entry-post-date">
-                                <h2 class="utf_entry_title"><a href="blog-single-fullwidth.html"> {{content.title}}</a></h2>
-                                <div class="utf_entry_meta">
-                                    <ul class="list-inline">
-                                        <li><i class="fa fa-clock"></i>{{Jdate.jdate('J F Y',content.dateSubmit)}}</li>
-                                        <li><i class="fa fa-user"></i><a href="#"> {{ content.submitter.fullName}}</a></li>
-                                        <li><i class="fa fa-list"></i><a href="#"> {{ content.cat.catName}}</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="utf_thumb_wrapper"> <img src="{{ asset('publicFiles/' ~ content.pictureBanner) }}" class="img-responsive" alt="" > </div>
-                            <div class="utf_entry_content">
-                                <p>{{ content.body | raw }}</p>
-                            </div>
-                            <footer class="utf_entry_footer">
-                                <div class="post-tags">
-                                    <span class="tags-links">
-                                        <i class="fa fa-tags"></i>
-                                        {% if content.kywords is not null %}
-                                            {% for tag in content.kywords |split(',') %}
-                                                <a href="#" rel="tag">{{ tag }}</a>
-                                            {% endfor %}
-                                        {% endif %}
-                                    </span>
-                                </div>
-                                <ul class="list-inline left share-post">
-                                    <li><a href="#"><i class="fab fa-facebook"></i></a> </li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a> </li>
-                                    <li><a href="#"><i class="fab fa-linkedin"></i></a> </li>
-                                    <li><a href="#"><i class="fab fa-google-plus"></i></a> </li>
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <!-- Post-->
+                    <article class="post">
+                        <div class="post-preview"><a href="{{ path('blogShowPost',{'url':content.url}) }}"><img src="{{ asset('publicFiles/' ~ content.pictureBanner) }}" alt="{{content.title}}"></a></div>
+                        <div class="post-wrapper">
+                            <div class="post-header">
+                                <h2 class="post-title"><a href="{{ path('blogShowPost',{'url':content.url}) }}">{{content.title}} </a></h2>
+                                <ul class="post-meta">
+                                    <li> {{Jdate.jdate('J F Y',content.dateSubmit)}}</li>
+                                    <li><a href="#">{{ content.cat.catName}}</a></li>
                                 </ul>
-                            </footer>
-                        </article>
-                        <hr class="mr-blog-tab">
-                        <ul class="media-list comment-list mt-30">
-
+                            </div>
+                            <div class="post-content">
+                                <p>
+                                    {{ content.body | raw }}
+                                </p>
+                            </div>
+                            <div class="post-more pt-4 align-items-center d-flex"><a href="{{ path('blog')}}" class="btn secondary-solid-btn">بازگشت <span class="ti-arrow-circle-left"></span></a></div>
+                        </div>
+                    </article>
+                    <!-- Post end-->
+                    <!-- Comments area-->
+                    <div class="comments-area mb-5">
+                        <h5 class="comments-title">دیدگاه‌ها</h5>
+                        <div class="comment-list">
                             {% for comment in content.newsComments() %}
-                                <li class="media">
-                                    <div class="media-right"> <a href="#"> <img class="avatar" src="https://www.gravatar.com/avatar/{{ comment.emailMD5 }}?s=200" alt="Michael Ethan"> </a> </div>
-                                    <div class="media-body">
-                                        <div class="comment-info">
-                                            <h4 class="author-name">
-                                                {{comment.fullName}}
-                                                <small class="text-muted">
-                                                    ارسال شده در
-                                                    {{Jdate.jdate('J F Y',comment.dateSubmit)}}
-                                                </small>
-
-                                            </span>
-                                            </h4>
+                                <!-- Comment-->
+                                <div class="comment">
+                                    <div class="comment-author"><img class="avatar img-fluid rounded-circle" src="https://www.gravatar.com/avatar/{{ comment.emailMD5 }}?s=200" alt="متن پیام"></div>
+                                    <div class="comment-body">
+                                        <div class="comment-meta">
+                                            <div class="comment-meta-author"><a href="#">{{comment.fullName}}</a></div>
+                                            <div class="comment-meta-date"><a href="#">{{Jdate.jdate('J F Y',comment.dateSubmit)}}</a></div>
                                         </div>
-                                        <p>{{comment.body}}</p>
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        <hr class="mr-blog-tab">
-                        <div class="comments-wrapper">
-                            <div class="comments-tab">
-                                <div class="panel-body">
-                                    <div role="tabpanel" class="tab-pane fade in active" id="default-comment">
-                                        <div class="comment-respond">
-                                            <form action="#" method="post" id="commentform">
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-sm-4 comment-form-author">
-                                                            <input class="form-control" id="author" required placeholder="نام" name="author" type="text" value="" aria-required="true">
-                                                        </div>
-                                                        <div class="col-sm-4 comment-form-email">
-                                                            <input id="email" class="form-control" required name="email" placeholder="آدرس ایمیل" type="email" value="" aria-required="true">
-                                                        </div>
-                                                        <div class="col-sm-4 comment-form-subject">
-                                                            <input class="form-control" required placeholder="موضوع" id="subject" name="subject" type="text" value="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group comment-form-comment">
-                                                    <textarea class="form-control" id="comment" name="comment" placeholder="متن" rows="8" aria-required="true"></textarea>
-                                                </div>
-                                                <div class="form-submit">
-                                                    <button class="btn blue vfx_waves_effect waves-light" name="submit" type="submit" id="submit" value="" >ثبت</button>
-                                                </div>
-                                            </form>
+                                        <div class="comment-content">
+                                            <p>{{comment.body}}</p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="comment-respond">
+                            <h5 class="comment-reply-title">پاسخ دهید</h5>
+                            <p class="comment-notes">آدرس ایمیل شما منتشر نخواهد شد. قسمت های مورد نیاز علامت گذاری شده اند</p>
+                            <form class="comment-form row">
+                                <div class="form-group col-md-4">
+                                    <input class="form-control" type="text" placeholder="نام">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input class="form-control" type="text" placeholder="پست الکترونیک">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input class="form-control" type="url" placeholder="سایت اینترنتی">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <textarea class="form-control" rows="8" placeholder="متن پیام"></textarea>
+                                </div>
+                                <div class="form-submit col-md-12">
+                                    <button class="btn secondary-solid-btn" type="submit">ارسال نظر</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                    <!-- Comments area end-->
                 </div>
             </div>
         </div>
     </div>
-
+    <!--blog section end-->
 {% endblock %}
