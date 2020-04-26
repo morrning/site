@@ -5,8 +5,15 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="table-responsive"> <!-- Required for Responsive -->
-                    <table id="myTable" class="table table-striped">
+                {% if app.request.get('msg') == 1 %}
+                        <script>
+                            $(document).ready(function(){
+                                swal("پیام سیستم", "یاداشت با موفقیت منتشر شد!", "success");
+                            });
+                        </script>
+                {% endif %}
+                <div class="table-responsive "> <!-- Required for Responsive -->
+                    <table id="myTable" class="table table-striped text-center">
                         <thead class="bg-primary text-light">
                             <tr class="my-0 py-0">
                                 <th>عنوان</th>
@@ -17,20 +24,56 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
                             {% for content in contents %}
-                                <td>{{ content.title }}</td>
-                                <td>{{ content.submitter.fullName }}</td>
-                                <td>{{ content.cat.catName }}</td>
-                                <td>{{ Jdate.jdate('y/m/d', content.dateSubmit) }}</td>
-                                <td>
-                                    <a class="btn btn-link" href="{{ path('home') }}">ویرایش</a>
-                                    <a class="btn btn-link" href="{{ path('home') }}">حذف</a>
-                                </td>
+                                <tr>
+                                    <td>{{ content.title }}</td>
+                                    <td>{{ content.submitter.fullName }}</td>
+                                    <td>{{ content.cat.catName }}</td>
+                                    <td>{{ Jdate.jdate('y/m/d', content.dateSubmit) }}</td>
+                                    <td>
+                                        <a class="btn btn-link text-success" href="{{ path('blogShowPost', {'url':content.url}) }}">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-link text-info" href="{{ path('home') }}">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
                             {% endfor %}
-                        </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger-gradient">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">حذف یاداشت</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="ti-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        آیا برای حذف این یاداشت مطمئن هستید؟
+                    </p>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-success">
+                        <i class="fa fa-trash"></i>
+                        حذف
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fa fa-close"></i>
+                        بستن
+                    </button>
+
                 </div>
             </div>
         </div>

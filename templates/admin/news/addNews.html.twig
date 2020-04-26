@@ -6,6 +6,7 @@
         <div class="row">
             <div class="col-12">
                 {{ form_start(form) }}
+                {{ form_errors(form) }}
                 {{ form_label(form.title) }}
                 {{ form_widget(form.title) }}
                 {{ form_label(form.des) }}
@@ -61,6 +62,7 @@
                                     <div class="row">
                                         <div class="col p-3">
                                             {{ form_widget(form.url) }}
+                                            <div class="text-muted">در صورتی که قصد دارید آدرس به صورت اتوماتیک ایجاد شود این بخش را خالی بگذارید.</div>
                                         </div>
                                     </div>
                                 </div>

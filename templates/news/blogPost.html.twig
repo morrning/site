@@ -26,9 +26,13 @@
                             </div>
 
                             <div class="post-footer">
-                                <div class="post-more pt-4 align-items-center d-flex float-left"><a href="{{ path('blog')}}" class="btn secondary-solid-btn">بازگشت <span class="ti-arrow-circle-left"></span></a></div>
-
-                                <div class="post-tags float-right"><a href="#">سفر </a><a href="#">سبک </a><a href="#">اخبار </a><a href="#">موسیقی</a></div>
+                                <div class="post-more align-items-center d-flex float-right"><a href="{{ path('blog')}}" class="text-danger btn btn-apple">بازگشت <span class="ti-arrow-circle-left"></span></a></div>
+                                <div class="post-tags float-left">
+                                    <a href=""><i class="fa fa-tag"></i> </a>
+                                    {% for tag in content.kywords|split(',') %}
+                                        <a href="#">{{tag}} </a>
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </article>

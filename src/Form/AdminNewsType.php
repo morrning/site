@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\NewsCat;
 use App\Entity\NewsContent;
+use App\Form\Type\FileboxType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -21,9 +22,9 @@ class AdminNewsType extends AbstractType
             ->add('title',TextType::class)
             ->add('body', CKEditorType::class)
             ->add('des',TextareaType::class)
-            ->add('pictureBanner', TextType::class,['required'=>false])
+            ->add('pictureBanner', FileboxType::class,['required'=>false])
             ->add('kywords',TextType::class,['required'=>false])
-            ->add('url',TextType::class)
+            ->add('url',TextType::class,['required'=>false])
             ->add('cat',EntityType::class,
             [
                 'class'=> NewsCat::class,
