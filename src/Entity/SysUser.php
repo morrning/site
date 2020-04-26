@@ -52,9 +52,15 @@ class SysUser implements UserInterface
      */
     private $newsContents;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\NewsComment", mappedBy="user")
+     */
+    private $newsComments;
+
     public function __construct()
     {
         $this->newsContents = new ArrayCollection();
+        $this->newsComments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -184,6 +190,37 @@ class SysUser implements UserInterface
             // set the owning side to null (unless already changed)
             if ($newsContent->getSubmitter() === $this) {
                 $newsContent->setSubmitter(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|NewsComment[]
+     */
+    public function getNewsComments(): Collection
+    {
+        return $this->newsComments;
+    }
+
+    public function addNewsComment(NewsComment $newsComment): self
+    {
+        if (!$this->newsComments->contains($newsComment)) {
+            $this->newsComments[] = $newsComment;
+            $newsComment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNewsComment(NewsComment $newsComment): self
+    {
+        if ($this->newsComments->contains($newsComment)) {
+            $this->newsComments->removeElement($newsComment);
+            // set the owning side to null (unless already changed)
+            if ($newsComment->getUser() === $this) {
+                $newsComment->setUser(null);
             }
         }
 

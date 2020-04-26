@@ -47,6 +47,16 @@ class NewsComment
      */
     private $emailMD5;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $website;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SysUser", inversedBy="newsComments")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +130,30 @@ class NewsComment
     public function setEmailMD5(string $emailMD5): self
     {
         $this->emailMD5 = $emailMD5;
+
+        return $this;
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebsite(?string $website): self
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    public function getUser(): ?SysUser
+    {
+        return $this->user;
+    }
+
+    public function setUser(?SysUser $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="{{ asset('front/css/animate.min.css') }}">
     <!--ytplayer css-->
     <link rel="stylesheet" href="{{ asset('front/css/jquery.mb.YTPlayer.min.css') }}">
+    <!--swal css-->
+    <link rel="stylesheet" href="{{ asset('front/swal/sweetalert.css') }}">
     <!--Owl carousel css-->
     <link rel="stylesheet" href="{{ asset('front/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('front/css/owl.theme.default.min.css') }}">
@@ -48,9 +50,13 @@
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
     <!--responsive css-->
     <link rel="stylesheet" href="{{ asset('front/css/responsive.css') }}">
+    <!--jQuery-->
+    <script src="{{ asset('front/js/jquery-3.4.1.min.js') }}"></script>
+
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-
+    <!-- Plugin scripts -->
+    <script src="{{ asset('admin/vendors/bundle.js') }}"></script>
 </head>
 <body>
 
@@ -303,8 +309,7 @@
 <!--bottom to top button end-->
 
 
-<!--jQuery-->
-<script src="{{ asset('front/js/jquery-3.4.1.min.js') }}"></script>
+
 <!--Popper js-->
 <script src="{{ asset('front/js/popper.min.js') }}"></script>
 <!--Bootstrap js-->

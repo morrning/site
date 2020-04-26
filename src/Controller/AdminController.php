@@ -98,4 +98,29 @@ class AdminController extends AbstractController
         return new Response('ok');
     }
 
+    /**
+     * @Route("/admin/comments/archive/{msg}", name="adminCommentsArchive", options={"expose"=true})
+     */
+    public function adminCommentsArchive($msg = 0)
+    {
+        $comments = $this->getDoctrine()->getRepository('App:NewsComment')->findAll();
+        return $this->render('admin/news/commentArchive.html.twig', [
+            'comments' => $comments,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/comments/delete/{id}", name="adminNewsCommentDelete", options = { "expose" = true })
+     */
+    public function adminNewsCommentDelete($id)
+    {
+        $comment = $this->getDoctrine()->getRepository('App:NewsComment')->find($id);
+        if(! is_null($comment)){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($comment);
+            $em->flush();
+        }
+        return new Response('ok');
+    }
+
 }

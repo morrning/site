@@ -1,0 +1,74 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{% trans %}admin.comment.archive{% endtrans %}{% endblock %}
+{% block  pageBody %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                {% if app.request.get('msg') == 1 %}
+                    <script>
+                        $(document).ready(function(){
+                            swal("پیام سیستم", "دیدگاه با موفقیت حذف شد!", "success");
+                        });
+                    </script>
+                {% endif %}
+                <div class="table-responsive "> <!-- Required for Responsive -->
+                    <table id="myTable" class="table table-striped text-center">
+                        <thead class="bg-primary text-light">
+                        <tr class="my-0 py-0">
+                            <th>نویسنده</th>
+                            <th>متن</th>
+                            <th>محتوا</th>
+                            <th>تاریخ ارسال</th>
+                            <th>امکانات</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for comment in comments %}
+                            <tr>
+                                <td>{{ comment.fullName }}</td>
+                                <td>{{ comment.body }}</td>
+                                <td><a class="btn btn-link" href="{{ path('blogShowPost', {'msg': '0', 'url': comment.post.url}) }}">{{ comment.post.title }}</a></td>
+                                <td>{{ Jdate.jdate('y/m/d', comment.dateSubmit) }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-link text-danger"  onclick="commentDelete('{{ comment.id }}')">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function commentDelete(id) {
+            swal({
+                title: "حذف دیدگاه",
+                text: "آیا برای حذف این دیدگاه مطمئن هستید؟",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: Routing.generate('adminNewsCommentDelete', { 'id': id }),
+                            success: function(data) {
+                                swal("دیدگاه با موفقیت حذف شد", {
+                                    icon: "success",
+                                })
+                                .then(() => {
+                                    location.reload();
+                                });
+
+                            }
+                        });
+                    }
+                   })
+        }
+
+    </script>
+{% endblock %}

@@ -60,23 +60,35 @@
                         <div class="comment-respond">
                             <h5 class="comment-reply-title">پاسخ دهید</h5>
                             <p class="comment-notes">آدرس ایمیل شما منتشر نخواهد شد. قسمت های مورد نیاز علامت گذاری شده اند</p>
-                            <form class="comment-form row">
+                            {% if app.request.get('msg') == 1 %}
+                                <script>
+                                    $(document).ready(function(){
+                                        swal("پیام سیستم", "دیدگاه با موفقیت ثبت شد!", "success");
+                                    });
+                                </script>
+                            {% endif %}
+                            {{ form_start(form) }}
+                            <div class="row">
+                                {{ form_errors(form) }}
                                 <div class="form-group col-md-4">
-                                    <input class="form-control" type="text" placeholder="نام">
+                                    {{ form_widget(form.fullName,{'attr':{'placeholder':'نام و نام‌خانوادگی'}}) }}
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input class="form-control" type="text" placeholder="پست الکترونیک">
+                                    {{ form_widget(form.email,{'attr':{'placeholder':'پست الکترونیکی'}}) }}
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input class="form-control" type="url" placeholder="سایت اینترنتی">
+                                    {{ form_widget(form.website,{'attr':{'placeholder':'وب‌سایت'}}) }}
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="form-group col-md-12">
-                                    <textarea class="form-control" rows="8" placeholder="متن پیام"></textarea>
+                                    {{ form_widget(form.body,{'attr':{'placeholder':'متن دیدگاه شما؟'}}) }}
                                 </div>
                                 <div class="form-submit col-md-12">
-                                    <button class="btn secondary-solid-btn" type="submit">ارسال نظر</button>
+                                    {{ form_widget(form.submit) }}
                                 </div>
-                            </form>
+                                {{ form_end(form) }}
+                            </div>
                         </div>
                     </div>
                     <!-- Comments area end-->
