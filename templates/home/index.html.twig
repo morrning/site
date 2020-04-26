@@ -188,7 +188,7 @@
                             <span class="category position-absolute badge badge-pill badge-primary">{{blogLast.cat.catName}}</span>
                             <img src="{{ asset('publicFiles/' ~ blogLast.pictureBanner) }}" class="card-img-top position-relative" alt="وبلاگ">
                             <div class="card-body">
-                                <h3 class="h5 mb-2 card-title"><a href="#">{{blogLast.title}}</a></h3>
+                                <h3 class="h5 mb-2 card-title"><a href="{{ path('blogShowPost',{'url':blogLast.url}) }}">{{blogLast.title}}</a></h3>
                                 <div class="post-meta mb-2">
                                     <ul class="list-inline meta-list">
                                         <li class="list-inline-item">{{Jdate.jdate('J F Y',blogLast.dateSubmit)}}</li>

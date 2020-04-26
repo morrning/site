@@ -22,6 +22,9 @@
 
     <!-- App styles -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/app.min.css') }}" type="text/css">
+    <!-- Css -->
+    <link rel="stylesheet" href="{{ asset('admin/vendors/dataTable/dataTables.min.css') }}" type="text/css">
+
 </head>
 <body>
 
@@ -525,6 +528,9 @@
 <!-- Circle progress -->
 <script src="{{ asset('admin/vendors/circle-progress/circle-progress.min.js') }}"></script>
 
+<!-- Style -->
+<link rel="stylesheet" href="{{ asset('admin/vendors/tagsinput/bootstrap-tagsinput.css') }}" type="text/css">
+
 <!-- Dashboard scripts -->
 <!-- Chartjs -->
 <!-- <script src="vendors/charts/chartjs/chart.min.js"></script> -->
@@ -549,7 +555,28 @@
 <!-- App scripts -->
 <script src="{{ asset('admin/assets/js/app.min.js') }}"></script>
 
+<!--jQuery-->
+<script src="{{ asset('front/js/jquery-3.4.1.min.js') }}"></script>
+<!--Popper js-->
+<script src="{{ asset('front/js/popper.min.js') }}"></script>
+<!--Bootstrap js-->
+<script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
 
+<!-- Javascript -->
+<script src="{{ asset('admin/vendors/dataTable/jquery.dataTables.min.js') }}"></script>
+
+<!-- Bootstrap 4 and responsive compatibility -->
+<script src="{{ asset('admin/vendors/dataTable/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('admin/vendors/dataTable/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('admin/vendors/tagsinput/bootstrap-tagsinput.js') }}"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#myTable').DataTable();
+        $("input.tagsinput").tagsinput('items');
+    });
+
+</script>
 </body>
 
 </html>

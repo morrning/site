@@ -46,8 +46,9 @@ class AdminController extends AbstractController
      */
     public function adminNewsArchive($msg = 0)
     {
-        return $this->render('admin/dashboard.html.twig', [
-            'controller_name' => 'AdminController',
+        $news = $this->getDoctrine()->getRepository('App:NewsContent')->findAll();
+        return $this->render('admin/news/contentArchive.html.twig', [
+            'contents' => $news,
         ]);
     }
 }

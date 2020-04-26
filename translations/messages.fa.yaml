@@ -1,5 +1,6 @@
 admin.dashboard : داشبورد
 admin.news.new : یاداشت جدید
+admin.news.archive : آرشیو یاداشت‌ها
 Title : عنوان
 Body : متن
 Des : چکیده یاداشت
@@ -8,3 +9,4 @@ Cat : دسته بندی
 Kywords: کلیدواژه‌ها
 Url : آدرس
 Picture banner : تصویر نمایه
+table.index: ردیف

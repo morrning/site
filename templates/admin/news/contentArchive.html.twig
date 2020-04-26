@@ -1,0 +1,38 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{% trans %}admin.news.archive{% endtrans %}{% endblock %}
+{% block  pageBody %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive"> <!-- Required for Responsive -->
+                    <table id="myTable" class="table table-striped">
+                        <thead class="bg-primary text-light">
+                            <tr class="my-0 py-0">
+                                <th>عنوان</th>
+                                <th>نویسنده</th>
+                                <th>دسته‌بندی</th>
+                                <th>تاریخ ارسال</th>
+                                <th>امکانات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            {% for content in contents %}
+                                <td>{{ content.title }}</td>
+                                <td>{{ content.submitter.fullName }}</td>
+                                <td>{{ content.cat.catName }}</td>
+                                <td>{{ Jdate.jdate('y/m/d', content.dateSubmit) }}</td>
+                                <td>
+                                    <a class="btn btn-link" href="{{ path('home') }}">ویرایش</a>
+                                    <a class="btn btn-link" href="{{ path('home') }}">حذف</a>
+                                </td>
+                            {% endfor %}
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
