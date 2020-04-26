@@ -48,6 +48,8 @@
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
     <!--responsive css-->
     <link rel="stylesheet" href="{{ asset('front/css/responsive.css') }}">
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
 </head>
 <body>
@@ -323,7 +325,6 @@
 <script src="{{ asset('front/js/jquery.countdown.min.js') }}"></script>
 <!--custom js-->
 <script src="{{ asset('front/js/scripts.js') }}"></script>
-
 
 </body>
 </html>

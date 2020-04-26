@@ -11,6 +11,12 @@
                                 swal("پیام سیستم", "یاداشت با موفقیت منتشر شد!", "success");
                             });
                         </script>
+                {% elseif app.request.get('msg') == 2 %}
+                    <script>
+                        $(document).ready(function(){
+                            swal("پیام سیستم", "یاداشت با موفقیت حذف شد!", "success");
+                        });
+                    </script>
                 {% endif %}
                 <div class="table-responsive "> <!-- Required for Responsive -->
                     <table id="myTable" class="table table-striped text-center">
@@ -37,7 +43,7 @@
                                         <a class="btn btn-link text-info" href="{{ path('home') }}">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                                        <button type="button" class="btn btn-link text-danger"  onclick="contentPreDelete('{{ content.id }}')">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
@@ -65,7 +71,7 @@
                 </div>
                 <div class="modal-footer">
 
-                    <button type="button" class="btn btn-success">
+                    <button type="button" class="btn btn-success" onclick="contentDelete()">
                         <i class="fa fa-trash"></i>
                         حذف
                     </button>
@@ -78,4 +84,19 @@
             </div>
         </div>
     </div>
+    <script>
+        function contentPreDelete(id) {
+            window.SelectedIndex = id;
+            $('#exampleModalCenter').modal();
+        }
+        function contentDelete() {
+            $.ajax({
+                url: Routing.generate('adminNewsContentDelete', { 'id': window.SelectedIndex }),
+                success: function(data) {
+                    window.location.replace(Routing.generate('adminNewsArchive',{'msg' : 2}));
+                }
+            });
+        }
+
+    </script>
 {% endblock %}

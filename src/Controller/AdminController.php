@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity;
 use App\Form;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +31,7 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
+
 
     /**
      * @Route("/admin/news/add", name="adminNewsAdd")
@@ -73,7 +75,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/admin/news/archive/{msg}", name="adminNewsArchive")
+     * @Route("/admin/news/archive/{msg}", name="adminNewsArchive", options={"expose"=true})
      */
     public function adminNewsArchive($msg = 0)
     {
@@ -82,4 +84,18 @@ class AdminController extends AbstractController
             'contents' => $news,
         ]);
     }
+    /**
+     * @Route("/admin/news/delete/{id}", name="adminNewsContentDelete", options = { "expose" = true })
+     */
+    public function adminNewsContentDelete($id)
+    {
+        $news = $this->getDoctrine()->getRepository('App:NewsContent')->find($id);
+        if(! is_null($news)){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($news);
+            $em->flush();
+        }
+        return new Response('ok');
+    }
+
 }

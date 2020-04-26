@@ -27,6 +27,8 @@
     <!--jQuery-->
     <script src="{{ asset('front/js/jquery-3.4.1.min.js') }}"></script>
 
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 </head>
 <body>
 
@@ -483,11 +485,20 @@
                 </nav>
             </div>
         </div>
-
         <div class="container-fluid">
+
             <div class="row">
-                {% block pageBody %}{% endblock %}
+                <div class="col-md-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            {% block pageBody %}{% endblock %}
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
         </div>
 
         <!-- begin::footer -->
@@ -570,12 +581,16 @@
 <script src="{{ asset('admin/vendors/dataTable/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('admin/vendors/dataTable/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('admin/vendors/tagsinput/bootstrap-tagsinput.js') }}"></script>
+
+
 <script>
     $(document).ready(function(){
         $('#myTable').DataTable();
         $("input.tagsinput").tagsinput('items');
         {% block javascriptOnReady %}{% endblock %}
     });
+    <!-- global variables -->
+    var SelectedIndex;
 </script>
 {% block javaScript %}{% endblock %}
 </body>
