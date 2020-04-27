@@ -100,8 +100,10 @@
                     </div>
                     <script>
                         function privecyToggle(elemet){
-
-                            $(elemet).addClass('blur');
+                            if(elemet.checked == true)
+                                $('main').addClass('blur');
+                            else
+                                $('main').removeClass('blur');
                         }
                     </script>
                 </div>
