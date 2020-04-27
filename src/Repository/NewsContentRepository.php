@@ -18,7 +18,10 @@ class NewsContentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, NewsContent::class);
     }
-
+    public function findAllSorted()
+    {
+        return $this->findBy(array(), array('dateSubmit' => 'ASC'));
+    }
     // /**
     //  * @return NewsContent[] Returns an array of NewsContent objects
     //  */
@@ -33,6 +36,25 @@ class NewsContentRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findByCat($cat,$page){
+        return $this->createQueryBuilder('qb')
+            ->setFirstResult(10 * ($page -1))
+            ->where('qb.cat = :cat')
+            ->setParameter('cat', $cat)
+            ->orderBy('qb.dateSubmit','ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByTag($tag,$page){
+        return $this->createQueryBuilder('qb')
+            ->setFirstResult(10 * ($page -1))
+            ->where('qb.kywords LIKE :tag')
+            ->setParameter('tag', '%'.$tag.'%')
+            ->orderBy('qb.dateSubmit','ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
     /*
     public function findOneBySomeField($value): ?NewsContent

@@ -16,7 +16,7 @@
                                 <h2 class="post-title"><a href="{{ path('blogShowPost',{'url':content.url}) }}">{{content.title}} </a></h2>
                                 <ul class="post-meta">
                                     <li> {{Jdate.jdate('J F Y',content.dateSubmit)}}</li>
-                                    <li><a href="#">{{ content.cat.catName}}</a></li>
+                                    <li><a href="{{ path('blogCat',{'url':content.cat.catUrl}) }}">{{ content.cat.catName}}</a></li>
                                 </ul>
                             </div>
                             <div class="post-content">
@@ -30,7 +30,7 @@
                                 <div class="post-tags float-left">
                                     <a href=""><i class="fa fa-tag"></i> </a>
                                     {% for tag in content.kywords|split(',') %}
-                                        <a href="#">{{tag}} </a>
+                                        <a href="{{path('blogTag',{'tag':tag})}}">{{tag}} </a>
                                     {% endfor %}
                                 </div>
                             </div>

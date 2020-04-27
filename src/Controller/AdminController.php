@@ -61,6 +61,25 @@ class AdminController extends AbstractController
                 $news->setViewCount(0);
                 $news->setSubmitter($this->getUser());
                 $entityManager = $this->getDoctrine()->getManager();
+
+                //add tags
+                $tags = explode(',',$news->getKywords());
+
+                foreach ($tags as $tag){
+                    $en = $this->getDoctrine()->getRepository('App:NewsTag')->findOneBy(['tagName'=>$tag]);
+                    $em = $this->getDoctrine()->getManager();
+                    if(is_null($en)){
+                        $en = new Entity\NewsTag();
+                        $en->setTagName($tag);
+                        $en->setTagUseCount(1);
+                    }
+                    else{
+                        $en->setTagUseCount($en->getTagUseCount() + 1);
+                    }
+                    $news->addTag($en);
+                    $em->persist($en);
+                    $em->flush();
+                }
                 $entityManager->persist($news);
                 $entityManager->flush();
                 return $this->redirectToRoute('adminNewsArchive',['msg'=>1]);
@@ -79,7 +98,7 @@ class AdminController extends AbstractController
      */
     public function adminNewsArchive($msg = 0)
     {
-        $news = $this->getDoctrine()->getRepository('App:NewsContent')->findAll();
+        $news = $this->getDoctrine()->getRepository('App:NewsContent')->findAllSorted();
         return $this->render('admin/news/contentArchive.html.twig', [
             'contents' => $news,
         ]);

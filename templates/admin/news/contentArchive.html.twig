@@ -26,6 +26,7 @@
                                 <th>نویسنده</th>
                                 <th>دسته‌بندی</th>
                                 <th>تاریخ ارسال</th>
+                                <th>تعداد نمایش</th>
                                 <th>امکانات</th>
                             </tr>
                         </thead>
@@ -36,6 +37,7 @@
                                     <td>{{ content.submitter.fullName }}</td>
                                     <td>{{ content.cat.catName }}</td>
                                     <td>{{ Jdate.jdate('y/m/d', content.dateSubmit) }}</td>
+                                    <td>{{ content.viewCount }}</td>
                                     <td>
                                         <a class="btn btn-link text-success" href="{{ path('blogShowPost', {'url':content.url}) }}">
                                             <i class="fa fa-eye"></i>

@@ -11,7 +11,15 @@
                     {% for content in contents %}
                         <!-- Post-->
                         <article class="post">
-                            <div class="post-preview"><a href="{{ path('blogShowPost',{'url':content.url}) }}"><img src="{{ asset('publicFiles/' ~ content.pictureBanner) }}" alt="وبلاگ"></a></div>
+                            <div class="post-preview">
+                                <a href="{{ path('blogShowPost',{'url':content.url}) }}">
+                                    {% if content.pictureBanner is null %}
+                                        <img src="{{ asset('images/public/blogpost.png') }}" alt="{{content.title}}">
+                                    {% else %}
+                                        <img src="{{ asset('publicFiles/' ~ content.pictureBanner) }}" alt="{{content.title}}">
+                                    {% endif %}
+                                </a>
+                            </div>
                             <div class="post-wrapper">
                                 <div class="post-header">
                                     <h2 class="post-title"><a href="{{ path('blogShowPost',{'url':content.url}) }}">{{content.title}} </a></h2>
@@ -57,7 +65,15 @@
                                 {% set lastContents = EntityMGR.findByPage('App:NewsContent',1,5) %}
                                 {% for lastContent in lastContents %}
                                     <li class="clearfix">
-                                        <div class="wi"><a href="{{ path('blogShowPost',{'url':lastContent.url}) }}"><img src="{{ asset('publicFiles/' ~ lastContent.pictureBanner) }}" alt="پست اخیر" class="img-fluid rounded"></a></div>
+                                        <div class="wi">
+                                            <a href="{{ path('blogShowPost',{'url':lastContent.url}) }}">
+                                                {% if lastContent.pictureBanner is null %}
+                                                    <img class="img-fluid roundedu" src="{{ asset('images/public/blogpost.png') }}" alt="{{lastContent.title}}">
+                                                {% else %}
+                                                    <img class="img-fluid roundedu" src="{{ asset('publicFiles/' ~ lastContent.pictureBanner) }}" alt="{{lastContent.title}}">
+                                                {% endif %}
+                                            </a>
+                                        </div>
                                         <div class="wb"><a href="{{ path('blogShowPost',{'url':lastContent.url}) }}">{{lastContent.title}} </a><span class="post-date">{{Jdate.jdate('J F Y',lastContent.dateSubmit)}}</span></div>
                                     </li>
                                 {% endfor %}
@@ -71,7 +87,7 @@
                             <ul>
                                 {% set cats = EntityMGR.findAll('App:NewsCat') %}
                                 {% for cat in cats %}
-                                    <li><a href="#">{{cat.catName}} <span class="float-right"></span></a></li>
+                                    <li><a href="{{ path('blogCat',{'url':cat.catUrl}) }}">{{cat.catName}} <span class="float-right"></span></a></li>
                                 {% endfor %}
                             </ul>
                         </aside>
@@ -83,7 +99,15 @@
                             <ul>
                                 {% for top in top5 %}
                                     <li class="clearfix">
-                                        <div class="wi"><a href="{{ path('blogShowPost',{'url':top.url}) }}"><img src="{{ asset('publicFiles/' ~ top.pictureBanner) }}" alt="پست اخیر" class="img-fluid rounded"></a></div>
+                                        <div class="wi">
+                                            <a href="{{ path('blogShowPost',{'url':top.url}) }}">
+                                                {% if top.pictureBanner is null %}
+                                                    <img class="img-fluid roundedu" src="{{ asset('images/public/blogpost.png') }}" alt="{{top.title}}">
+                                                {% else %}
+                                                    <img class="img-fluid roundedu" src="{{ asset('publicFiles/' ~ top.pictureBanner) }}" alt="{{top.title}}">
+                                                {% endif %}
+                                            </a>
+                                        </div>
                                         <div class="wb"><a href="{{ path('blogShowPost',{'url':top.url}) }}">{{top.title}} </a><span class="post-date">{{Jdate.jdate('J F Y',top.dateSubmit)}}</span></div>
                                     </li>
                                 {% endfor %}
@@ -94,7 +118,11 @@
                             <div class="widget-title">
                                 <h6>برچسب ها</h6>
                             </div>
-                            <div class="tag-cloud"><a href="#">تجارت الکترونیک </a><a href="#">نمونه کارها </a><a href="#">متن ساختگی </a><a href="#">خود راه انداز </a><a href="#">کسب و کار </a><a href="#">شرکت های بزرگ</a></div>
+                            <div class="tag-cloud">
+                                {% for tag in tags %}
+                                    <a href="{{path('blogTag',{'tag':tag.tagName})}}">{{tag.tagName}} </a>
+                                {% endfor %}
+                            </div>
                         </aside>
                     </div>
                 </div>

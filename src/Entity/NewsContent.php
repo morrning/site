@@ -79,9 +79,15 @@ class NewsContent
      */
     private $newsComments;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\NewsTag", inversedBy="newsContents")
+     */
+    private $tags;
+
     public function __construct()
     {
         $this->newsComments = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -247,6 +253,32 @@ class NewsContent
             if ($newsComment->getPost() === $this) {
                 $newsComment->setPost(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|NewsTag[]
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(NewsTag $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+
+        return $this;
+    }
+
+    public function removeTag(NewsTag $tag): self
+    {
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
         }
 
         return $this;
