@@ -1,0 +1,95 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{% trans %}admin.cats.archive{% endtrans %}{% endblock %}
+{% block  pageBody %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                {% if app.request.get('msg') == 1 %}
+                    <script>
+                        $(document).ready(function(){
+                            swal("پیام سیستم", "دسته‌بندی با موفقیت افزوده شد!", "success");
+                        });
+                    </script>
+                    {% elseif app.request.get('msg') == 2 %}
+                    <script>
+                        $(document).ready(function(){
+                            swal("پیام سیستم", "دسته‌بندی با موفقیت حذف شد!", "success");
+                        });
+                    </script>
+                {% endif %}
+                <div class="table-responsive "> <!-- Required for Responsive -->
+                    <table id="myTable" class="table table-striped text-center">
+                        <thead class="bg-primary text-light">
+                        <tr class="my-0 py-0">
+                            <th>عنوان</th>
+                            <th>آدرس</th>
+                            <th>امکانات</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for cat in cats %}
+                            <tr>
+                                <td>{{ cat.catName }}</td>
+                                <td>{{ cat.catUrl }}</td>
+                                <td>
+                                    <a class="btn btn-link text-info" href="{{ path('home') }}">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-link text-danger"  onclick="contentPreDelete('{{ cat.id }}')">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger-gradient">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">حذف یاداشت</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="ti-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        آیا برای حذف این دسته‌بندی مطمئن هستید؟
+                    </p>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-success" onclick="contentDelete()">
+                        <i class="fa fa-trash"></i>
+                        حذف
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fa fa-close"></i>
+                        بستن
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function contentPreDelete(id) {
+            window.SelectedIndex = id;
+            $('#exampleModalCenter').modal();
+        }
+        function contentDelete() {
+            $.ajax({
+                url: Routing.generate('adminNewsContentDelete', { 'id': window.SelectedIndex }),
+                success: function(data) {
+                    window.location.replace(Routing.generate('adminNewsArchive',{'msg' : 2}));
+                }
+            });
+        }
+
+    </script>
+{% endblock %}

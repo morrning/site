@@ -200,6 +200,7 @@
                         <li class="navigation-divider">بخش یاداشت و خبر</li>
                         <li><a class="" href="{{ path('adminNewsAdd') }}">یاداشت جدید</a></li>
                         <li><a class="" href="{{ path('adminNewsArchive') }}">مدیریت یاداشت‌ها<span class="badge badge-danger">{{ EntityMGR.findAll('App:NewsContent') | length }}</span></a></li>
+                        <li><a class="" href="{{ path('adminNewsCatArchive') }}">دسته‌بندی‌ها<span class="badge badge-danger">{{ EntityMGR.findAll('App:NewsCat') | length }}</span></a></li>
                         <li><a class="" href="{{ path('adminCommentsArchive') }}">دیدگاه‌ها<span class="badge badge-danger">{{ EntityMGR.findAll('App:NewsComment') | length }}</span></a></li>
                     </ul>
                 </div>

@@ -142,4 +142,15 @@ class AdminController extends AbstractController
         return new Response('ok');
     }
 
+    /**
+     * @Route("/admin/cats/archive/{msg}", name="adminNewsCatArchive", options={"expose"=true})
+     */
+    public function adminNewsCatArchive($msg = 0)
+    {
+        $cats = $this->getDoctrine()->getRepository('App:NewsCat')->findAll();
+        return $this->render('admin/news/catArchive.html.twig', [
+            'cats' => $cats,
+        ]);
+    }
+
 }
