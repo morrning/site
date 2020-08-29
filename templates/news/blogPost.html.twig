@@ -66,6 +66,12 @@
                                         swal("پیام سیستم", "دیدگاه با موفقیت ثبت شد!", "success");
                                     });
                                 </script>
+                            {% elseif app.request.get('msg') == 2 %}
+                                <script>
+                                    $(document).ready(function(){
+                                        swal("پیام سیستم", "اعتبارستنجی با مشکل مواجه شد!", "danger");
+                                    });
+                                </script>
                             {% endif %}
                             {{ form_start(form) }}
                             <div class="row">
@@ -83,6 +89,18 @@
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     {{ form_widget(form.body,{'attr':{'placeholder':'متن دیدگاه شما؟'}}) }}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    {{ form_widget(form.recaptcha, { 'attr': {
+                                        'options' : {
+                                            'theme': 'light',
+                                            'type': 'image',
+                                            'size' : 'normal',
+                                            'defer' : true,
+                                            'async' : true,
+                                        
+                                        },
+                                    } }) }}
                                 </div>
                                 <div class="form-submit col-md-12">
                                     {{ form_widget(form.submit) }}

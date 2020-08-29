@@ -47,11 +47,14 @@ class NewsController extends AbstractController
 
         $form = $this->createForm(NewsCommentSubmitType::class,$comment);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {            
             $comment->setEmailMD5($comment->getEmail());
             $comment->setDateSubmit(time());
             $entityMGR->insertEntity($comment);
             return $this->redirectToRoute('blogShowPost',['url'=>$content->getUrl(), 'msg'=>1]);
+        }
+        elseif ($form->isSubmitted() && ! $form->isValid()) {
+            return $this->redirectToRoute('blogShowPost',['url'=>$content->getUrl(), 'msg'=>2]);
         }
         return $this->render('news/blogPost.html.twig', [
             'content' => $content,
