@@ -57,6 +57,11 @@ class NewsComment
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $recaptcha;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +159,18 @@ class NewsComment
     public function setUser(?SysUser $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getRecaptcha(): ?string
+    {
+        return $this->recaptcha;
+    }
+
+    public function setRecaptcha(?string $recaptcha): self
+    {
+        $this->recaptcha = $recaptcha;
 
         return $this;
     }

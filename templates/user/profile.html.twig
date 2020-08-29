@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}پروفایل کاربری{% endblock %}
+
+{% block body %}
+    <!--team single section start-->
+        <section class="team-single-section ptb-100">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-12 col-sm-12 col-lg-5">
+                        <div class="team-single-img">
+                            <img src="{{asset('images/public/avatar.png')}}" alt="عضو" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-lg-6">
+                        <div class="team-single-text">
+                            <div class="team-name mb-4">
+                                <h4 class="mb-1">{{ user.fullName }}</h4>
+                                {% if is_granted('ROLE_ADMIN') %} 
+                                    <span>
+                                        <a class="btn btn-lg btn-primary" href="{{ path('adminDashboard') }}">
+                                            <span class="ti-menu-alt"></span>
+                                        پنل مدیریت سایت
+                                        </a>
+                                    </span>
+                                 {% endif %}
+                                
+                            </div>
+                            <ul class="team-single-info">
+                                <li><strong>موبایل: </strong><span>{% if user.mobile is null%}ثبت نشده{% else %}{{user.mobile}}{% endif %}</span></li>
+                                <li><strong>ایمیل: </strong><span>{{ user.email }}</span></li>
+                            </ul>
+                            <div class="text-content mt-20">
+                                <p>اقتباس مهارت های رهبری کاملاً تحقیق شده را بکار ببندید در حالی که بهترین شیوه های یک به یک. یکپارچه کردن الزامات مجازی و فناوری دقیق. منابع پویا را پیش از کاربر پسند ساده کنید.</p>
+                            </div>
+                            <ul class="team-social-list list-inline mt-4">
+                                <li class="list-inline-item"><a href="#" class="color-primary"><span class="ti-instagram"></span></a></li>
+                                <li class="list-inline-item"><a href="#" class="color-primary"><span class="ti-linkedin"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--team single section end-->
+{% endblock %}

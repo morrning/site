@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 
 class NewsCommentSubmitType extends AbstractType
 {
@@ -24,6 +25,7 @@ class NewsCommentSubmitType extends AbstractType
             ->add('email',EmailType::class)
             ->add('body',TextareaType::class)
             ->add('website',UrlType::class,['required'=>false])
+            ->add('recaptcha', EWZRecaptchaType::class)
             ->add('submit',SubmitType::class)
         ;
     }

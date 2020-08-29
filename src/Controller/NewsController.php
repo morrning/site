@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Entity\NewsComment;
 use App\Form\NewsCommentSubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service;
 use App\From;
+
 class NewsController extends AbstractController
 {
     /**
