@@ -57,6 +57,16 @@ class SysUser implements UserInterface
      */
     private $newsComments;
 
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $mobile;
+
+    /**
+     * @ORM\Column(type="string", length=5)
+     */
+    private $countryCode;
+
     public function __construct()
     {
         $this->newsContents = new ArrayCollection();
@@ -223,6 +233,30 @@ class SysUser implements UserInterface
                 $newsComment->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMobile(): ?string
+    {
+        return $this->mobile;
+    }
+
+    public function setMobile(string $mobile): self
+    {
+        $this->mobile = $mobile;
+
+        return $this;
+    }
+
+    public function getCountryCode(): ?string
+    {
+        return $this->countryCode;
+    }
+
+    public function setCountryCode(string $countryCode): self
+    {
+        $this->countryCode = $countryCode;
 
         return $this;
     }

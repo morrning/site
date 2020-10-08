@@ -12,3 +12,7 @@ Kywords: کلیدواژه‌ها
 Url : آدرس
 Picture banner : تصویر نمایه
 table.index: ردیف
+Full name: اسم شما
+Password: کلمه عبور
+Mobile: شماره تلفن همراه
+Your password should be at least {{ limit }} characters: طول کلمه عبور باید بیشتر از 6 کاراکتر باشد.

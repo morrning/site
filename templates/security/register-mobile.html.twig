@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}عضویت در سایت{% endblock %}
+
+{% block body %}
+    <!--hero section start-->
+    <section class="hero-section full-screen gray-light-bg">
+        <div class="container-fluid">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-12 col-md-7 col-lg-6 col-xl-8 d-none d-lg-block">
+                    <!-- Image -->
+                    <div class="bg-cover vh-100 ml-n3 gradient-overlay" style="background-image: url({{ asset('front/img/slider-img-5.jpg') }});">
+                        <div class="position-absolute login-signup-content">
+                            <div class="position-relative text-white col-md-12 col-lg-7">
+                                <h2 class="text-white">حساب کاربری برای خود بسازید</h2>
+                                <p>هدف ما ارائه خدمات جامع ,همراه با پشتیبانی مداوم و بلند مدت برای شما کاربران محترم است.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-5 col-lg-6 col-xl-4 px-lg-6">
+                    <div class="login-signup-wrap px-4 px-lg-5">
+                        <!-- Heading -->
+                        <h1 class="text-center mb-1">
+                            ثبت نام
+                        </h1>
+
+                        <!-- Subheading -->
+                        <p class="text-muted text-center mb-5">
+                            دسترسی رایگان به خدمات ما.
+                        </p>
+                        {{ form_start(registrationForm) }}
+                        <!-- Form -->
+                        <form class="login-signup-form">
+                            {{ form_row(registrationForm.fullName) }}
+                            {{ form_row(registrationForm.mobile) }}
+                            {{ form_row(registrationForm.password) }}
+                            <!-- Submit -->
+                            <button class="btn btn-block secondary-solid-btn border-radius mt-4 mb-3">
+                                ثبت نام
+                            </button>
+
+                            <!-- Link -->
+                            <div class="text-center">
+                                <small class="text-muted text-center">
+                                    قبلاً حساب دارید؟ <a href="{{ path('app_login') }}">ورود به پنل کاربری</a> .
+                                </small>
+                            </div>
+                        </form>
+                        {{ form_end(registrationForm) }}
+                    </div>
+                </div>
+            </div> <!-- / .row -->
+        </div>
+    </section>
+    <!--hero section end-->
+{% endblock %}
